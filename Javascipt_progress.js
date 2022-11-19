@@ -1,11 +1,9 @@
 const prompt = require("prompt-sync")({ sigint: true });
 const x = {
-    n: 0,
     a: function fib() {
-        this.n = parseInt(prompt("Enter the number of fib terms : "))
+        n = parseInt(prompt("Enter the number of fib terms : "))
         let a = 0
         let b = 1
-        n = this.n
         for (let i = 0; i < n; i++) {
             // console.log(a)
             process.stdout.write(a.toString() + " ")
@@ -16,10 +14,13 @@ const x = {
         console.log()
     },
     b: function tri() {
-        x.n = parseInt(prompt("Enter the number of rows : "))
-        n = this.n
+        n = parseInt(prompt("Enter the number of rows : "))
         console.log("For triangle :\n1. Same Character throughout\n2. Increment by one\n3. Decrement by one")
         let ch = parseInt(prompt())
+        if (ch == 2 || ch == 3) {
+            console.log("1. Every next element\n2. Every next row")
+            ch_ = prompt()
+        }
         let t = prompt("Enter a character : ")
         console.log("Your triangle has been generated!")
         switch (ch) {
@@ -32,31 +33,47 @@ const x = {
                 }
                 break;
             case 2:
-                for (let i = 1; i <= n; i++) {
-                    for (let j = 0; j < i; j++) {
-                        process.stdout.write(t + " ")
-                        t = String.fromCharCode(t.charCodeAt(0) + 1)
+                if (ch_ == 1) {
+                    for (let i = 1; i <= n; i++) {
+                        for (let j = 0; j < i; j++) {
+                            process.stdout.write(t + " ")
+                            t = String.fromCharCode(t.charCodeAt(0) + 1)
+                        }
+                        console.log()
                     }
-                    console.log()
+                } else {
+                    for (let i = 1; i <= n; i++) {
+                        for (let j = 0; j < i; j++) {
+                            process.stdout.write(t + " ")
+                        }
+                        t = String.fromCharCode(t.charCodeAt(0) + 1)
+                        console.log()
+                    }
                 }
                 break;
             case 3:
-                for (let i = 1; i <= n; i++) {
-                    for (let j = 0; j < i; j++) {
-                        process.stdout.write(t + " ")
-                        t = String.fromCharCode(t.charCodeAt(0) - 1)
+                if (ch_ == 1) {
+                    for (let i = 1; i <= n; i++) {
+                        for (let j = 0; j < i; j++) {
+                            process.stdout.write(t + " ")
+                            t = String.fromCharCode(t.charCodeAt(0) - 1)
+                        }
+                        console.log()
                     }
-                    console.log()
+                } else {
+                    for (let i = 1; i <= n; i++) {
+                        for (let j = 0; j < i; j++) {
+                            process.stdout.write(t + " ")
+                        }
+                        t = String.fromCharCode(t.charCodeAt(0) - 1)
+                        console.log()
+                    }
+                    break;
                 }
-                break;
         }
-    },
-
-
+    }
 }
-
 console.log("Welcome to the menu!")
-
 do {
     console.log("The available features are :-\n1. Fibonacci Sequence\n2. Triangle generator")
     ch = parseInt(prompt("Enter your choice : "))
@@ -70,3 +87,4 @@ do {
     }
     cont = prompt("Do you want to continue? (Enter y to continue) : ")
 } while (cont == 'y')
+console.log("Thank You for using this menu!")
